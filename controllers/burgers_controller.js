@@ -1,16 +1,10 @@
 let express = require('express');
-let burgers = require('../models/burgers.js');
+let db = require('../models');
 
 let router = express.Router();
 
 router.get('/', (req, res) => {
-  burgers.all('burgers', (data) => {
-    let burger = {
-      logo: "assets/images/burger_icon.png",
-      burger: data
-    };
-    res.render('index', burger);
-  });
+  db.Burger.findAll({}).then(burger => res.render('index', burger))
 });
 
 router.get('/manager', (req, res) => {
