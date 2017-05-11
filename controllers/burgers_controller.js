@@ -4,16 +4,22 @@ let db = require('../models');
 let router = express.Router();
 
 router.get('/', (req, res) => {
-  db.Burger.findAll({}).then(burger => res.render('index', burger))
-});
-
-router.get('/manager', (req, res) => {
-  burgers.all('burgers', (data) => {
+  db.Burger.findAll({}).then(data => {
     let burger = {
       logo: "assets/images/burger_icon.png",
       burger: data
     };
-    res.render('manager', burger);
+    res.render('index', burger)
+  });
+});
+
+router.get('/manager', (req, res) => {
+  db.Burger.findAll({}).then(data => {
+    let burger = {
+          logo: "assets/images/burger_icon.png",
+          burger: data
+        };
+        res.render('manager', burger);
   });
 });
 
@@ -24,25 +30,34 @@ router.post('/api/new', (req, res) => {
     date: new Date()
   };
 
-  burgers.add('burgers', ['burger_name', 'devoured', 'date'], burg, (data) => {
+  db.Burger.create(burg).then(() =>{
     res.redirect('/');
   });
+
 });
 
 router.put('/:id', (req, res) =>{
 
-  let cond = `id = ${req.params.id};`;
-  let burgObj = {
-    devoured: req.body.devoured
-  };
+  let cond = req.params.id;
 
-  burgers.update('burgers', burgObj, cond, (data) =>{
+  db.Burger.update({
+    devoured: req.body.devoured
+  },{
+    where: {
+      id: cond
+    }
+  }).then(() =>{
     res.redirect('/');
   });
 });
 
 router.delete('/delete/:id', (req, res) => {
-  burgers.delete('burgers', req.params.id, (data) => {
+
+  db.Burger.destroy({
+    where: {
+      id: req.params.id
+    }
+  }).then(() => {
     res.redirect('/manager');
   })
 });
