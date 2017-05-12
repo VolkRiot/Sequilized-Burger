@@ -16,6 +16,12 @@ module.exports = (sequelize, DataTypes) => {
   },
   {
     timestamps: false
-  });
+  },{
+        classMethods: {
+          associate: function(models) {
+            Burger.hasOne(models.Customer);
+          }
+        }
+      });
 
 };
