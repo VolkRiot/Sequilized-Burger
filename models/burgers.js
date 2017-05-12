@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       validate: {
         len: [1]
-      }
+      },
+      allowNull: false
     },
     devoured: {
-      type: DataTypes.BOOLEAN
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
     },
     date: {
       type: DataTypes.DATE
