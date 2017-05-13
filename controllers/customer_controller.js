@@ -8,10 +8,10 @@ let router = express.Router();
 
 router.get('/', (req, res) => {
   db.Customer.findAll().then(data => {
-      let customer = {
-        customer: data
-      };
-      res.render('customers', customer)
+    let customer = {
+      customer: data
+    };
+    res.render('customers', customer);
   });
 });
 
@@ -30,7 +30,7 @@ router.delete('/delete/:id', (req, res) => {
     }
   }).then(() => {
     res.redirect('/customers');
-  })
+  });
 });
 
 module.exports = router;

@@ -6,13 +6,13 @@ module.exports = (sequelize, DataTypes) => {
         len: [2]
       },
       allowNull: false
-    },
-  },{
+    }
+  }, {
     timestamps: false
-  },{
+  }, {
     classMethods: {
-      associate: function(models){
-        Customer.hasMany(models.Burger)
+      associate: function (models) {
+        Customer.hasMany(models.Burger);
       }
     }
   });
