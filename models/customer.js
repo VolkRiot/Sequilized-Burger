@@ -1,5 +1,4 @@
 module.exports = (sequelize, DataTypes) => {
-
   return sequelize.define('Customer', {
     customer_name: {
       type: DataTypes.STRING,
@@ -16,6 +15,5 @@ module.exports = (sequelize, DataTypes) => {
         Customer.hasMany(models.Burger)
       }
     }
-  })
-
+  });
 };

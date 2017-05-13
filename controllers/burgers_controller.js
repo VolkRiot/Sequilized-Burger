@@ -24,13 +24,11 @@ router.get('/manager', (req, res) => {
 });
 
 router.post('/api/new', (req, res) => {
-  let burg = {
+  db.Burger.create({
     burger_name: req.body.burger_name,
     devoured: 0,
     date: new Date()
-  };
-
-  db.Burger.create(burg).then(() =>{
+  }).then(() =>{
     res.redirect('/');
   });
 

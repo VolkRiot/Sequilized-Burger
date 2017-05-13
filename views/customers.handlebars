@@ -19,7 +19,7 @@
               {{#each customer}}
                 <tr>
                   <td>{{this.id}}</td>
-                  <td>{{this.burger_name}}</td>
+                  <td>{{this.customer_name}}</td>
                   <td>
                     <form class="form-inline" action="/customers/delete/{{this.id}}?_method=DELETE" method="POST">
                       <input type="hidden" name="devoured" value="1">
@@ -37,4 +37,20 @@
 
     </div>
   </div>
+
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h2>New Customer</h2>
+      <form class="create-update-form form-inline" action="/customers/api/new" method="POST">
+
+        <div class="form-group">
+          <label for="customer">Customer Name:</label>
+          <input type="text" id="customer" name="customer_name">
+        </div>
+
+        <button class="btn btn-default" type="submit">Create Burger</button>
+      </form>
+    </div>
+  </div>
+
 </div>

@@ -15,13 +15,21 @@ router.get('/', (req, res) => {
   });
 });
 
+router.post('/api/new', (req, res) => {
+  db.Customer.create({
+    customer_name: req.body.customer_name
+  }).then(() => {
+    res.redirect('/customers');
+  });
+});
+
 router.delete('/delete/:id', (req, res) => {
   db.Customer.destroy({
     where: {
       id: req.params.id
     }
   }).then(() => {
-    res.redirect('/');
+    res.redirect('/customers');
   })
 });
 
