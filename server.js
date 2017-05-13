@@ -2,6 +2,7 @@ const express = require('express');
 const override = require('method-override');
 const bodyParser = require('body-parser');
 const exphbs = require("express-handlebars");
+const db = require('./models');
 
 let port = process.env.PORT || 8080;
 
@@ -16,7 +17,10 @@ app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
 app.use('/', require('./controllers/burgers_controller.js'));
+app.use('/customers', require('./controllers/customer_controller.js'));
 
-app.listen(port, () => {
-  console.log(`Listening on PORT ${port}`);
+db.sequelize.sync().then(() => {
+  app.listen(port, () => {
+    console.log(`Listening on PORT ${port}`);
+  });
 });
