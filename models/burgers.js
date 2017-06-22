@@ -1,5 +1,5 @@
 module.exports = (sequelize, DataTypes) => {
-  return sequelize.define('Burger', {
+  const Burger = sequelize.define('Burger', {
     burger_name: {
       type: DataTypes.STRING,
       validate: {
@@ -15,13 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   },
-    {
-      timestamps: false
-    }, {
-      classMethods: {
-        associate: function (models) {
-          Burger.hasOne(models.Customer);
-        }
+  {
+    timestamps: false,
+    classMethods: {
+      associate: function (models) {
+        Burger.belongsTo(models.Customer);
       }
-    });
+    }
+
+  });
+  return Burger;
 };
