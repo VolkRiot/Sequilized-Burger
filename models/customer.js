@@ -9,16 +9,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     burger_eaten: {
       type: DataTypes.STRING,
-      defaultValue: "None"
+      defaultValue: 'None'
     }
   },
-  {
-    timestamps: false,
-    classMethods: {
-      associate: function (models) {
-        Customer.hasMany(models.Burger);
+    {
+      timestamps: false,
+      classMethods: {
+        associate: function (models) {
+          Customer.hasMany(models.Burger);
+        }
       }
-    }
-  });
+    });
   return Customer;
 };

@@ -15,14 +15,14 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATE
     }
   },
-  {
-    timestamps: false,
-    classMethods: {
-      associate: function (models) {
-        Burger.belongsTo(models.Customer);
+    {
+      timestamps: false,
+      classMethods: {
+        associate: function (models) {
+          Burger.belongsTo(models.Customer);
+        }
       }
-    }
 
-  });
+    });
   return Burger;
 };
