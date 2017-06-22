@@ -17,5 +17,7 @@
     "mysql": "^2.13.0",
     "sequelize": "^3.30.4"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "semistandard": "^11.0.0"
+  }
 }
